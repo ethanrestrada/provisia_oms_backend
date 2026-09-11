@@ -1,0 +1,29 @@
+## Visual Studio & .NET Build Artifacts
+.vs/
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+
+## User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.userprefs
+
+## Package Restore
+packages/
+*.nupkg
+
+# Local configuration
+appsettings.Development.json
+appsettings.Local.json
+*.env
+*.pem
+*.pfx
+*.p12
+
