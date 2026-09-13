@@ -7,17 +7,16 @@
 ![RabbitMQ](https://img.shields.io/badge/RabbitMQ-Messaging-FF6600?logo=rabbitmq&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-Caching-DC382D?logo=redis&logoColor=white)
 ![SignalR](https://img.shields.io/badge/SignalR-Real--time-0078D4)
-![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
 
-## 📋 Descripción
+## Descripción
 
 **OMS Lite** es un sistema de gestión de pedidos, facturación y envíos pensado para una distribuidora de alimentos de tamaño mediano (modelo híbrido B2B/B2C). El proyecto no busca solo integrar tecnologías por separado, sino resolver un problema de negocio real: procesar pedidos de forma confiable, mantener el sistema responsivo bajo carga, dar visibilidad inmediata al cliente sobre el estado de su pedido, y sostener un código mantenible a largo plazo.
 
 Caso de negocio usado como ejemplo: una distribuidora con catálogo en **Lácteos y Quesos, Charcutería y Carnes Frías, Aceites y Vinagres, Harinas y Granos Premium y Conservas y Gourmet**, con clientes finales y clientes corporativos (restaurantes, hoteles, minimarkets) que operan con línea de crédito.
 
-## ✨ Funcionalidades principales
+## Funcionalidades principales
 
 - Catálogo de productos con caching (Cache-Aside en Redis, TTL 15 min) e invalidación automática.
 - Gestión de pedidos con validación de stock en tiempo real.
@@ -30,7 +29,7 @@ Caso de negocio usado como ejemplo: una distribuidora con catálogo en **Lácteo
 - Autenticación con JWT (access + refresh token) y contraseñas protegidas con BCrypt.
 - Documentación interactiva de la API con Swagger/OpenAPI.
 
-## 🏗️ Arquitectura
+## Arquitectura
 
 Clean Architecture, con las dependencias apuntando siempre hacia el dominio:
 
@@ -42,7 +41,7 @@ src/
 └── Api/             # Controladores REST, middlewares, configuración de Swagger
 ```
 
-## 🧰 Stack tecnológico
+## Stack tecnológico
 
 | Área | Tecnología |
 |---|---|
@@ -61,7 +60,7 @@ src/
 
 13 tablas organizadas en 6 dominios: Usuarios y Permisos, Catálogo e Inventario, Gestión de Pedidos, Pagos y Facturación, Despacho y Logística, y Sistema/Auditoría. Detalle completo en [`/docs`](./docs).
 
-## 🔄 Flujo principal
+## Flujo principal
 
 ```
 Cliente → POST /api/orders → Orders (Pending) + OutboxMessages
@@ -81,7 +80,7 @@ Cliente → POST /api/orders → Orders (Pending) + OutboxMessages
                         (notificación en tiempo real al cliente)
 ```
 
-## 🚀 Cómo levantar el proyecto
+## Cómo levantar el proyecto
 
 ### Requisitos previos
 - .NET SDK 8 o 9
@@ -106,18 +105,10 @@ dotnet run --project src/Api
 
 La API queda disponible en `https://localhost:5001`, con Swagger UI en `/swagger`.
 
-## 🧪 Testing
+## Testing
 
 ```bash
 dotnet test
 ```
 
 Incluye pruebas unitarias de los casos de uso (con mocks de repositorios) y pruebas de integración con TestContainers levantando PostgreSQL y RabbitMQ reales.
-
-## 🗺️ Roadmap de desarrollo
-
-El desarrollo sigue un orden incremental por fases (fundamentos → autenticación → catálogo/pedidos → caching → mensajería → resiliencia → tiempo real → reglas de negocio → testing → contenedores/CI-CD → observabilidad). Detalle completo del checklist en [`/docs`](./docs).
-
-## 📄 Licencia
-
-Este proyecto se distribuye bajo la licencia MIT. Ver [`LICENSE`](./LICENSE) para más detalles.
