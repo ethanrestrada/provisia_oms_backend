@@ -1,4 +1,6 @@
-﻿using Infrastructure.Persistance;
+﻿using Application.Common.Interfaces.Services;
+using Infrastructure.Persistance;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +15,11 @@ namespace Infrastructure
                 options.UseNpgsql(config.GetConnectionString("DefaultConnection"))
                         .UseSnakeCaseNamingConvention()
             );
+
+            services.Configure<JwtOptions>(config.GetSection(JwtOptions.SectionName));
+            services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
+            services.AddScoped<ITokenService, JwtTokenService>();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             return services;
         }
